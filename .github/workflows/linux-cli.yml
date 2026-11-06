@@ -21,7 +21,7 @@ env:
 jobs:
   build-linux-cli:
     runs-on: ubuntu-latest
-    container: ubuntu:20.04
+    container: ubuntu:22.04
     steps:
     - name: Install dependencies
       run: |
@@ -47,23 +47,23 @@ jobs:
         cmake --build update/build --parallel
     - name: Build capture
       run: |
-        cmake -B capture/build -S capture -DCMAKE_BUILD_TYPE=Release -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
+        cmake -B capture/build -S capture -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
         cmake --build capture/build --parallel
     - name: Build csvexport
       run: |
-        cmake -B csvexport/build -S csvexport -DCMAKE_BUILD_TYPE=Release -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
+        cmake -B csvexport/build -S csvexport -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
         cmake --build csvexport/build --parallel
     - name: Build import
       run: |
-        cmake -B import/build -S import -DCMAKE_BUILD_TYPE=Release -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
+        cmake -B import/build -S import -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
         cmake --build import/build --parallel
     - name: Build merge
       run: |
-        cmake -B merge/build -S merge -DCMAKE_BUILD_TYPE=Release -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
+        cmake -B merge/build -S merge -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
         cmake --build merge/build --parallel
     - name: Build monitor
       run: |
-        cmake -B monitor/build -S monitor -DCMAKE_BUILD_TYPE=Release -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
+        cmake -B monitor/build -S monitor -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 -DNO_ISA_EXTENSIONS=ON -DGIT_REV=${{ github.sha }}
         cmake --build monitor/build --parallel
     - name: Stage release files
       run: |
